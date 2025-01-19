@@ -40,24 +40,26 @@ const BlogList = () => {
         </Col>
       </Row>
       <Row>
-      {blogPosts.map(({ _id, titolo, cover, author, categoria }) => (
-    <BlogCard
-      key={_id}
-      _id={_id}
-      titolo={titolo}
-      cover={cover}
-      author={author}
-      categoria={categoria}
-    />
-  ))}
+        {blogPosts.map(({ _id, titolo, cover, author, categoria }) => (
+          <BlogCard
+            key={_id}
+            _id={_id}
+            titolo={titolo}
+            cover={cover}
+            author={author}
+            categoria={categoria}
+          />
+        ))}
       </Row>
       <Row>
         <Col className="text-center">
-          {[1, 2, 3, 4, 5].map((page) => (
-            <Link className="m-2 fs-2" key={page} to={`/blog/page/${page}`}>
-              {page}
-            </Link>
-          ))}
+          {[1, 2, 3, 4, 5].map((page) => {
+            return (
+              <Link className="m-2 fs-2" key={page} to={`/${page}`}>
+                {page}
+              </Link>
+            );
+          })}
         </Col>
       </Row>
     </Container>
