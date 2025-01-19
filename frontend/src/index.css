@@ -1,3 +1,18 @@
-body {
-  font-family: "Ubuntu", sans-serif;
-}
+/*<Col>
+            <h2>
+              {author.name} {author.cognome}
+            </h2>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <p>{author.email}</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <p>{author.data_di_nascita}</p>
+          </Col>
+          <Col>
+            <img src={author.avatar} alt=""/>
+          </Col>*/
