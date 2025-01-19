@@ -11,7 +11,7 @@ import BlogCard from "../components/BlogCard/BlogCard.component";
 
 const BlogList = () => {
   const [blogPosts, setBlogPosts] = useState([]);
-
+  const [pageCount, setPageCount] = useState (0);
   const page = useParams().page ?? 1;
 
   const fetchBlogPosts = async () => {
@@ -26,10 +26,34 @@ const BlogList = () => {
     }
   };
 
+
   useEffect(() => {
+    fetchBlogPostNumber();
     fetchBlogPosts();
   }, [page]);
 
+const fetchBlogPostNumber = async() => {
+    try {
+      const response = await fetch (
+       `http://localhost:3001/api/blogposts/page/count`
+      );
+      const data = await response.json();
+      setPageCount(data);
+      console.log("Page count:", data);  
+    } catch (error) {
+      console.log(error)
+    }
+  };
+  
+
+const createPageArray = () => {
+    const pageArray = Array.from({lenght: pageCount}).map((_,index) => index +1);
+    console.log("PageArray:", pageArray);
+    return pageArray;
+  }
+  
+ 
+  
   return (
     <Container>
       <Row>
@@ -53,13 +77,15 @@ const BlogList = () => {
       </Row>
       <Row>
         <Col className="text-center">
-          {[1, 2, 3, 4, 5].map((page) => {
-            return (
-              <Link className="m-2 fs-2" key={page} to={`/${page}`}>
-                {page}
+        {createPageArray().map((page) => (
+            <Link
+              key={page}
+              className="m-2 fs-4"
+              to={`/${page}`}
+            >
+              {page} 
               </Link>
-            );
-          })}
+      ))}
         </Col>
       </Row>
     </Container>

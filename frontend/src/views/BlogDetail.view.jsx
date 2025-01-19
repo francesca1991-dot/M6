@@ -7,12 +7,17 @@ const BlogDetail = () => {
   const [blogPost, setBlogPost] = useState({});
 
   const _id = useParams().id;
-  const { titolo, cover, readTime, author, content, categoria } = blogPost;
+  const { titolo, 
+    cover,
+    readTime, 
+    author, 
+    content, 
+    categoria } = blogPost;
 
   const fetchBlogPost = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/blogposts/${_id}`
+        `http://localhost:3001/api/blogposts/post/${_id}`
       );
       const data = await response.json();
       setBlogPost(data);

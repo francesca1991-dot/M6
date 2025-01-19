@@ -14,7 +14,7 @@ const getPaginatedBlogPosts= async (req, res, next) =>
 {
  try{
        const page= req.params.page;
-        const allBlogPosts = await BlogPost.find({}).limit(4).skip(4*(page -1));
+        const allBlogPosts = await BlogPost.find({}).limit(8).skip(8*(page -1));
         res.json(allBlogPosts);
     } catch (error) {
         console.log(error);
@@ -39,4 +39,18 @@ const getBlogPostById = async (req,res, next) => {
     }
 };
 
-export {getAllBlogPosts , getBlogPostById, getPaginatedBlogPosts};
+
+const getBlogPagesCount= async (res,req, next) => {
+    try{
+        const countAll = await BlogPost.countDocuments();
+            const pages = Math.ceil (countAll/8);
+            console.log("Retrieved Page Count:", pages);
+            res.json(pages);
+      } catch (error) { console.log (error);
+}
+}
+
+export {getAllBlogPosts ,
+     getBlogPostById, 
+     getPaginatedBlogPosts, 
+     getBlogPagesCount};
