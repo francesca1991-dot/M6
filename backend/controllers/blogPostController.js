@@ -24,7 +24,7 @@ const getPaginatedBlogPosts= async (req, res, next) =>
 
 
 
-const getBlogPostById = async (req,res, next) => {
+const getBlogPostById = async (req, res, next) => {
     try {
         const id = req.params.id;
         const blogPost = await BlogPost.findById(id);

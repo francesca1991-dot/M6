@@ -30,7 +30,7 @@ const BlogList = () => {
   useEffect(() => {
     fetchBlogPostNumber();
     fetchBlogPosts();
-  }, [fetchBlogPosts]);
+  }, [page]);
 
 const fetchBlogPostNumber = async() => {
     try {

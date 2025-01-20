@@ -7,7 +7,8 @@ const BlogDetail = () => {
   const [blogPost, setBlogPost] = useState({});
 
   const _id = useParams().id;
-  const { titolo, 
+  const { 
+    titolo, 
     cover,
     readTime, 
     author, 
