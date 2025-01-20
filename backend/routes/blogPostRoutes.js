@@ -8,7 +8,7 @@ import { getAllBlogPosts,
 const router = express.Router();
 
 router.get( "/count", getBlogPagesCount);
-router.get( "/:id", getBlogPostById);
+router.get( "'/:id'", getBlogPostById);
 router.get( "/page/:page", getPaginatedBlogPosts);
 router.get("/" , getAllBlogPosts);
 

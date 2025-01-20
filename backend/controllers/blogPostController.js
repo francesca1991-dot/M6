@@ -27,7 +27,7 @@ const getPaginatedBlogPosts= async (req, res, next) =>
 const getBlogPostById = async (req,res, next) => {
     try {
         const id = req.params.id;
-        const blogPost = await BlogPost.findById({_id: id});
+        const blogPost = await BlogPost.findById(id);
         if (!blogPost) {
             res.sendStatus(404).json("BlogPost not found")
         } else { 
@@ -40,7 +40,7 @@ const getBlogPostById = async (req,res, next) => {
 };
 
 
-const getBlogPagesCount= async (res,req, next) => {
+const getBlogPagesCount= async (req, res, next) => {
     try{
         const countAll = await BlogPost.countDocuments();
             const pages = Math.ceil (countAll/8);

@@ -30,12 +30,12 @@ const BlogList = () => {
   useEffect(() => {
     fetchBlogPostNumber();
     fetchBlogPosts();
-  }, [page]);
+  }, [fetchBlogPosts]);
 
 const fetchBlogPostNumber = async() => {
     try {
       const response = await fetch (
-       `http://localhost:3001/api/blogposts/page/count`
+       `http://localhost:3001/api/blogposts/count`
       );
       const data = await response.json();
       setPageCount(data);
@@ -47,7 +47,7 @@ const fetchBlogPostNumber = async() => {
   
 
 const createPageArray = () => {
-    const pageArray = Array.from({lenght: pageCount}).map((_,index) => index +1);
+    const pageArray = Array.from({length: pageCount}).map((_,index) => index +1);
     console.log("PageArray:", pageArray);
     return pageArray;
   }
@@ -78,14 +78,16 @@ const createPageArray = () => {
       <Row>
         <Col className="text-center">
         {createPageArray().map((page) => (
-            <Link
-              key={page}
-              className="m-2 fs-4"
-              to={`/${page}`}
-            >
-              {page} 
-              </Link>
-      ))}
+    page <= pageCount && (
+        <Link
+          key={page}
+          className="m-2 fs-4"
+          to={`/${page}`}
+        >
+          {page}
+        </Link>
+    )
+))}
         </Col>
       </Row>
     </Container>
